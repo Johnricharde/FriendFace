@@ -8,8 +8,10 @@
             var GusBull = new User("Gus", "Bull");
             var JimNebb = new User("Jim", "Nebb");
 
-            BobArno.AddFriend(GusBull);
-            BobArno.ShowFriendsList();
+            //BobArno.AddFriend(GusBull);
+            //BobArno.ShowFriendsList();
+
+            BobArno.ShowMenu();
         }
     }
 }

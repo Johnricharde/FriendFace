@@ -1,9 +1,11 @@
-﻿namespace FriendFace
+﻿using System.Numerics;
+
+namespace FriendFace
 {
     public class User
     {
-        string FirstName;
-        string LastName;
+        public string FirstName;
+        public string LastName;
 
         List<User> MyFriends = new();
 
@@ -12,12 +14,40 @@
             FirstName = firstName;
             LastName = lastName;
         }
-
-        public void ShowFriendsList()
+        public void ShowMenu()
         {
-            foreach (var friend in MyFriends)
+            Console.Clear();
+            Console.WriteLine("What would you like to do?\n");
+            Console.WriteLine("[1] Add Friend");
+            Console.WriteLine("[2] Remove Friend");
+            Console.WriteLine("[3] Show Friend");
+            Console.WriteLine("[4] Show Friendslist\n");
+
+            while (true)
             {
-                Console.WriteLine(friend.FirstName + " " + friend.LastName);
+                int indexInput = Convert.ToInt32(Console.ReadLine());
+                switch (indexInput)
+                {
+                    case 1:
+                        Console.WriteLine("What is your friends first name?");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("And what is your friends last name?");
+                        string lastName = Console.ReadLine();
+                        AddFriend(new User(firstName, lastName));
+                        break;
+                    case 2:
+                        //RemoveFriend();
+                        break;
+                    case 3:
+                        ShowFriend();
+                        break;
+                    case 4:
+                        ShowFriendsList();
+                        break;
+                    default:
+                        break;
+                }
+                ShowMenu();
             }
         }
         public void AddFriend(User friend)
@@ -27,6 +57,21 @@
         public void RemoveFriend(User person)
         {
             MyFriends.Remove(person);
+        }
+        public void ShowFriend()
+        {
+
+        }
+        public void ShowFriendsList()
+        {
+            Console.Clear();
+            Console.WriteLine("Friendslist:");
+
+            for (int i = 0; i < MyFriends.Count; i++)
+                Console.WriteLine($"[{i+1}] {MyFriends[i].FirstName} {MyFriends[i].LastName}");
+
+            Console.WriteLine("\nPress any button to go to main menu.");
+            Console.ReadKey();
         }
     }
 }
