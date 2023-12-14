@@ -39,13 +39,16 @@ namespace FriendFace
                     case 2:
                         ShowFriendsList();
                         Console.WriteLine("Who do you want to unfriend?");
-                        int friendlistIndex = Convert.ToInt32(Console.ReadLine());
-
-                        //RemoveFriend();
+                        int indexToDelete = Convert.ToInt32(Console.ReadLine()) - 1;
+                        RemoveFriend(indexToDelete);
                         Console.ReadKey();
                         break;
                     case 3:
-                        ShowFriend();
+                        ShowFriendsList();
+                        Console.WriteLine("Who do you want to unfriend?");
+                        int indexToShow = Convert.ToInt32(Console.ReadLine()) - 1;
+                        ShowFriend(indexToShow);
+                        Console.ReadKey();
                         break;
                     case 4:
                         ShowFriendsList();
@@ -62,13 +65,13 @@ namespace FriendFace
         {
             MyFriends.Add(friend);
         }
-        public void RemoveFriend(User person)
+        public void RemoveFriend(int indexToDelete)
         {
-            MyFriends.Remove(person);
+            MyFriends.RemoveAt(indexToDelete);
         }
-        public void ShowFriend()
+        public void ShowFriend(int indexToShow)
         {
-
+            Console.WriteLine($"Here is your friend: {MyFriends[indexToShow].FirstName} {MyFriends[indexToShow].LastName}");
         }
         public void ShowFriendsList()
         {
