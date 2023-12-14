@@ -26,6 +26,7 @@ namespace FriendFace
             while (true)
             {
                 int indexInput = Convert.ToInt32(Console.ReadLine());
+
                 switch (indexInput)
                 {
                     case 1:
@@ -36,13 +37,20 @@ namespace FriendFace
                         AddFriend(new User(firstName, lastName));
                         break;
                     case 2:
+                        ShowFriendsList();
+                        Console.WriteLine("Who do you want to unfriend?");
+                        int friendlistIndex = Convert.ToInt32(Console.ReadLine());
+
                         //RemoveFriend();
+                        Console.ReadKey();
                         break;
                     case 3:
                         ShowFriend();
                         break;
                     case 4:
                         ShowFriendsList();
+                        Console.WriteLine("\nPress any button to go to main menu.");
+                        Console.ReadKey();
                         break;
                     default:
                         break;
@@ -64,14 +72,10 @@ namespace FriendFace
         }
         public void ShowFriendsList()
         {
-            Console.Clear();
             Console.WriteLine("Friendslist:");
 
             for (int i = 0; i < MyFriends.Count; i++)
                 Console.WriteLine($"[{i+1}] {MyFriends[i].FirstName} {MyFriends[i].LastName}");
-
-            Console.WriteLine("\nPress any button to go to main menu.");
-            Console.ReadKey();
         }
     }
 }
