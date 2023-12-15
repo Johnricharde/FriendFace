@@ -30,29 +30,19 @@ namespace FriendFace
                 switch (indexInput)
                 {
                     case 1:
-                        Console.WriteLine("What is your friends first name?");
-                        string firstName = Console.ReadLine();
-                        Console.WriteLine("And what is your friends last name?");
-                        string lastName = Console.ReadLine();
-                        AddFriend(new User(firstName, lastName));
+                        AddFriend();
                         break;
                     case 2:
                         ShowFriendsList();
-                        Console.WriteLine("Who do you want to unfriend?");
-                        int indexToDelete = Convert.ToInt32(Console.ReadLine()) - 1;
-                        RemoveFriend(indexToDelete);
-                        Console.ReadKey();
+                        RemoveFriend();
                         break;
                     case 3:
                         ShowFriendsList();
-                        Console.WriteLine("Who do you want to unfriend?");
-                        int indexToShow = Convert.ToInt32(Console.ReadLine()) - 1;
-                        ShowFriend(indexToShow);
+                        ShowFriend();
                         Console.ReadKey();
                         break;
                     case 4:
                         ShowFriendsList();
-                        Console.WriteLine("\nPress any button to go to main menu.");
                         Console.ReadKey();
                         break;
                     default:
@@ -61,16 +51,28 @@ namespace FriendFace
                 ShowMenu();
             }
         }
-        public void AddFriend(User friend)
+        public void AddFriend()
         {
+            Console.WriteLine("What is your friends first name?");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("And what is your friends last name?");
+            string lastName = Console.ReadLine();
+
+            User friend = new(firstName, lastName);
             MyFriends.Add(friend);
         }
-        public void RemoveFriend(int indexToDelete)
+        public void RemoveFriend()
         {
+            Console.WriteLine("Who do you want to unfriend?");
+            int indexToDelete = Convert.ToInt32(Console.ReadLine()) - 1;
+
             MyFriends.RemoveAt(indexToDelete);
         }
-        public void ShowFriend(int indexToShow)
+        public void ShowFriend()
         {
+            Console.WriteLine("Who do you want to show?");
+            int indexToShow = Convert.ToInt32(Console.ReadLine()) - 1;
+
             Console.WriteLine($"Here is your friend: {MyFriends[indexToShow].FirstName} {MyFriends[indexToShow].LastName}");
         }
         public void ShowFriendsList()
